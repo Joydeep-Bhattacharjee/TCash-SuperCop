@@ -6,10 +6,20 @@ in, one structured JSON verdict out: which transaction it's about, whether the d
 backs the claim, the case type, the routing department, urgency, and a customer-safe
 reply that never leaks credentials or promises a refund it can't authorize.
 
-Built for the **TCash SuperCop presents SUST CSE Carnival 2026 — Codex Community Hackathon**.
+Built in TCash SuperCop 
 
-The judge only ever calls two endpoints — `GET /health` and `POST /analyze-ticket`
-— so the API *is* the product.
+---
+
+## Workflow
+
+![TCash SuperCop — Full Request Lifecycle](./img/workflow.png)
+
+The diagram above shows the end-to-end flow:
+
+1. **TCash App** fetches the user's recent transactions from **TCash DB**
+2. App sends `POST /analyze-ticket` (complaint + JSON history) to **TCash SuperCop**
+3. SuperCop engine: Normalizes language → Matches transactions → Checks safety rules → Generates AI prose
+4. Structured JSON verdict returned to **Agent Console** (safe reply, evidence trace, routing)
 
 ---
 
